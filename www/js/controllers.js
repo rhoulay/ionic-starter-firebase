@@ -1,38 +1,5 @@
 angular.module('starter.controllers', [])
-.controller('AuthCtrl', function($scope, Loading, Error, $state, Auth) {
 
-  $scope.FBLogin = function(){
-    Loading.show("Sign in with Facebook...");
-
-    facebookConnectPlugin.login(['public_profile'],
-      function(status) {
-        facebookConnectPlugin.getAccessToken(function(token) {
-            Auth.$signInWithCredential(firebase.auth.FacebookAuthProvider.credential(token)).then(function(authData, error) {
-                console.log(authData);
-                $state.go('tab.dash');
-                Loading.hide();
-            }).catch(function(error) {
-                switch (error.code) {
-                    case 'USER_CANCELLED':
-                        break;
-                    default:
-                        Error("Error", error);
-                        break;
-                }
-                Loading.hide();
-            });
-        }),
-        function(error) {
-            Loading.hide();
-            Error("Error", JSON.stringify(error));
-        };
-    },function(error) {
-        Loading.hide();
-        Error("Error", JSON.stringify(error));
-    });
-  }
-
-})
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {

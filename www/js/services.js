@@ -1,36 +1,4 @@
 angular.module('starter.services', [])
-.factory('Loading', function( $ionicLoading ){
-  var Loading = {
-    show: function(loadingText){
-      $ionicLoading.show({
-        template: '<div><ion-spinner class="spinner-light" icon="lines"/></div><div style="max-width:140px;">' + loadingText + '</div>'
-      }).then(function(){
-         console.log("The loading indicator is now displayed");
-      });
-    },
-    hide: function(){
-      $ionicLoading.hide().then(function(){
-         console.log("The loading indicator is now hidden");
-      });
-    }
-
-  }
-    return Loading;
-})
-.factory('Error', function( $ionicPopup, Loading ){
-  var Error = function(tit,msg){
-			var alertPopup = $ionicPopup.alert({
-				title: tit,
-				template: msg
-			});
-			alertPopup.then(function(res) {
-			});
-    };
-    return Error;
-})
-.factory('Auth', function( $firebaseAuth ){
-  return $firebaseAuth();
-})
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
