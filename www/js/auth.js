@@ -6,8 +6,9 @@ angular.module('starter.auth', [])
 
   $scope.FBLogin = function(){
     Loading.show("Sign in with Facebook...");
+    console.log(typeof facebookConnectPlugin);
 
-    if(typeof facebookConnectPlugin === 'function'){
+    if(typeof facebookConnectPlugin === 'object'){
       facebookConnectPlugin.login(['public_profile'],
         function(status) {
           facebookConnectPlugin.getAccessToken(function(token) {

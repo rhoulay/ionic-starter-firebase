@@ -49,7 +49,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
     }
     else {
       // logout
-      if(typeof facebookConnectPlugin === 'function'){
+      if(typeof facebookConnectPlugin === 'object'){
         facebookConnectPlugin.logout(
           function(status){
             console.log("logOut success: " + status);
