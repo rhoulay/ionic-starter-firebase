@@ -7,36 +7,40 @@ angular.module('starter.auth', [])
   $scope.FBLogin = function(){
     Loading.show("Sign in with Facebook...");
 
-    facebookConnectPlugin.login(['public_profile'],
-      function(status) {
-        facebookConnectPlugin.getAccessToken(function(token) {
-            Auth.$signInWithCredential(
-              firebase.auth.FacebookAuthProvider.credential(token)
-            )
-            .then(function(authData, error) {
-                console.log(authData);
-                $state.go('tab.dash');
-                Loading.hide();
-            })
-            .catch(function(error) {
-                switch (error.code) {
-                  case 'USER_CANCELLED':
-                      break;
-                  default:
-                      Error("Error", error);
-                      break;
-                }
-                Loading.hide();
-            });
-        }),
-        function(error) {
-            Loading.hide();
-            Error("Error", JSON.stringify(error));
-        };
-    },function(error) {
-        Loading.hide();
-        Error("Error", JSON.stringify(error));
-    });
+    if(typeof facebookConnectPlugin === 'function'){
+      facebookConnectPlugin.login(['public_profile'],
+        function(status) {
+          facebookConnectPlugin.getAccessToken(function(token) {
+              Auth.$signInWithCredential(
+                firebase.auth.FacebookAuthProvider.credential(token)
+              )
+              .then(function(authData, error) {
+                  console.log(authData);
+                  $state.go('tab.dash');
+                  Loading.hide();
+              })
+              .catch(function(error) {
+                  switch (error.code) {
+                    case 'USER_CANCELLED':
+                        break;
+                    default:
+                        Error("Error", error);
+                        break;
+                  }
+                  Loading.hide();
+              });
+          }),
+          function(error) {
+              Loading.hide();
+              Error("Error", JSON.stringify(error));
+          };
+      },function(error) {
+          Loading.hide();
+          Error("Error", JSON.stringify(error));
+      });
+    }
+
+
   };
 
   $scope.signIn = function (provider){

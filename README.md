@@ -121,3 +121,9 @@ On next firebase version, these problem may fixed. But on this starter, I choose
 ```
 $ cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="581547675358171" --variable APP_NAME="Ionic Starter Firebase Login"
 ```
+
+## About Twitter and Google sign in
+Has plan find native cordova plugin for Twitter and Google sign in.
+
+## Ionic V2
+Has plan publish Ionic V2 version.
