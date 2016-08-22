@@ -7,3 +7,10 @@
   background-size:cover;
   border-radius: 80px;
 }
+/* auth */
+.item-note{
+  position: absolute;
+  top: 6px;
+  right: 20px;
+  line-height: 34px;
+}

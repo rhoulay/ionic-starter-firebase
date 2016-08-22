@@ -49,6 +49,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
     }
     else {
       // logout
+      facebookConnectPlugin.logout(
+        function(status){
+          console.log("logOut success: " + status);
+        },
+        function(error){
+          console.log("logOut error: " + error);
+        }
+      );
       $rootScope.firebaseUser = 0;
       $ionicHistory.clearCache();
       $ionicHistory.clearHistory();

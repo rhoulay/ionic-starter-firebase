@@ -24,13 +24,5 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope, Auth) {
   $scope.signOut = function (){
     Auth.$signOut();
-    facebookConnectPlugin.logout(
-      function(status){
-        console.log("logOut success: " + status);
-      },
-      function(error){
-        console.log("logOut error: " + error);
-      }
-    );
   };
 });

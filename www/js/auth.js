@@ -3,24 +3,28 @@ angular.module('starter.auth', [])
   return $firebaseAuth();
 })
 .controller('AuthCtrl', function($scope, Loading, Error, ModalService, $state, Auth) {
-  
+
   $scope.FBLogin = function(){
     Loading.show("Sign in with Facebook...");
 
     facebookConnectPlugin.login(['public_profile'],
       function(status) {
         facebookConnectPlugin.getAccessToken(function(token) {
-            Auth.$signInWithCredential(firebase.auth.FacebookAuthProvider.credential(token)).then(function(authData, error) {
+            Auth.$signInWithCredential(
+              firebase.auth.FacebookAuthProvider.credential(token)
+            )
+            .then(function(authData, error) {
                 console.log(authData);
                 $state.go('tab.dash');
                 Loading.hide();
-            }).catch(function(error) {
+            })
+            .catch(function(error) {
                 switch (error.code) {
-                    case 'USER_CANCELLED':
-                        break;
-                    default:
-                        Error("Error", error);
-                        break;
+                  case 'USER_CANCELLED':
+                      break;
+                  default:
+                      Error("Error", error);
+                      break;
                 }
                 Loading.hide();
             });
@@ -40,7 +44,7 @@ angular.module('starter.auth', [])
 
     Auth.$signInWithPopup(provider).then(function(result) {
       console.log("Signed in as:", result.user.uid);
-      $state.go("tab.chats");
+      $state.go("tab.dash");
       Loading.hide();
     }).catch(function(error) {
       console.error("Authentication failed:", error);
@@ -56,7 +60,7 @@ angular.module('starter.auth', [])
       Auth.$signInWithEmailAndPassword(user.email, user.password)
       .then(function(currentUser) {
         console.log("Signed in as:", currentUser.uid);
-        $state.go("tab.chats");
+        $state.go("tab.dash");
         Loading.hide();
       }).catch(function(error) {
         Loading.hide();
@@ -73,7 +77,7 @@ angular.module('starter.auth', [])
         .then(function(currentUser) {
           console.log("User created with uid: " + currentUser.uid);
           $scope.closeModal();
-          $state.go("tab.chats");
+          $state.go("tab.dash");
           Loading.hide();
         }).catch(function(error) {
           Loading.hide();
@@ -88,8 +92,8 @@ angular.module('starter.auth', [])
         Loading.show("Sending...");
         Auth.$sendPasswordResetEmail(email).then(function() {
           console.log("Password reset email sent successfully!");
-          $scope.closePassword();
-          $state.go("tab.chats");
+          $scope.closeModal();
+          $state.go("tab.dash");
           Loading.hide();
         }).catch(function(error) {
           console.error("Error: ", error);
