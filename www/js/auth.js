@@ -4,6 +4,38 @@ angular.module('starter.auth', [])
 })
 .controller('AuthCtrl', function($scope, Loading, Error, ModalService, $state, Auth) {
 
+  $scope.googleSignIn = function() {
+    Loading.show("Sign in with Google...");
+
+    window.plugins.googleplus.login(
+      {},
+      function (user_data) {
+        Auth.$signInWithCredential(
+          firebase.auth.GoogleAuthProvider.credential(user_data.idToken)
+        )
+        .then(function(authData, error) {
+            console.log(authData);
+            $state.go('tab.dash');
+            Loading.hide();
+        })
+        .catch(function(error) {
+            switch (error.code) {
+              case 'USER_CANCELLED':
+                  break;
+              default:
+                  Error("Error", error);
+                  break;
+            }
+            Loading.hide();
+        });
+      },
+      function (msg) {
+        console.log(msg);
+        Loading.hide();
+      }
+    );
+  };
+
   $scope.FBLogin = function(){
     Loading.show("Sign in with Facebook...");
     console.log(typeof facebookConnectPlugin);

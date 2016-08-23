@@ -122,8 +122,19 @@ On next firebase version, these problem may fixed. But on this starter, I choose
 $ cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="581547675358171" --variable APP_NAME="Ionic Starter Firebase Login"
 ```
 
-## About Twitter and Google sign in
-Has plan find native cordova plugin for Twitter and Google sign in.
+## Install cordova-plugin-googleplus
+before install, you need Creating the Google Developers Console project: https://developers.google.com/+/mobile/ios/getting-started
+
+get REVERSED_CLIENT_ID:
+https://developers.google.com/mobile/add?platform=ios&cntapi=signin
+Enable Google services for your app to get a configuration file ```GoogleService-Info.plist``` which contains the ```REVERSED_CLIENT_ID``` that you will need during the plugin’s installation.
+
+then install cordova-plugin-googleplus:
+```
+$ cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=myreversedclientid
+```
 
 ## Ionic V2
 Has plan publish Ionic V2 version.
+
+com.weburner.ionicstarterfirebase

@@ -50,15 +50,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
     else {
       // logout
       if(typeof facebookConnectPlugin === 'object'){
-        facebookConnectPlugin.logout(
-          function(status){
-            console.log("logOut success: " + status);
-          },
-          function(error){
-            console.log("logOut error: " + error);
-          }
-        );
+        facebookConnectPlugin.getLoginStatus(
+          function(success){
+            if(success.status == "connected"){
+              facebookConnectPlugin.logout(
+                function(status){
+                  console.log("logOut success: " + status);
+                },
+                function(error){
+                  console.log("logOut error: " + error);
+                });
+            }
+
+          }, function(failure){
+
+          });
+
+
       }
+      window.plugins.googleplus.logout(
+          function (msg) {
+            console.log(msg);
+          }
+      );
       $rootScope.firebaseUser = 0;
       $ionicHistory.clearCache();
       $ionicHistory.clearHistory();
