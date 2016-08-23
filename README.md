@@ -113,7 +113,6 @@ resolve: {
 
 ## Firebase V3.0 problem
 Currently Firebase V3 auth's signInWithPopup/Redirect do not work in cordova apps, you can check discuss at: https://groups.google.com/forum/#!msg/firebase-talk/mC_MlLNCWnI/cL0OnL4hAwAJ
-
 On next firebase version, these problem may fixed. But on this starter, I choose use cordova-plugin-facebook4 for social signin.
 
 
@@ -134,7 +133,9 @@ then install cordova-plugin-googleplus:
 $ cordova plugin add cordova-plugin-googleplus --save --variable REVERSED_CLIENT_ID=myreversedclientid
 ```
 
+## Twitter?
+I find that Ionic Native recommend twitter-connect-plugin: http://ionicframework.com/docs/v2/native/twitter-connect/
+But I really don't like rely on more 3 part service, so I find other cordova-plugin for twitter.
+
 ## Ionic V2
 Has plan publish Ionic V2 version.
-
-com.weburner.ionicstarterfirebase
